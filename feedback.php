@@ -1,25 +1,8 @@
 <?php include 'inc/header.php'; ?>
 <?php
-$feedbacks = [
-  [
-    'id' => 1,
-    'name' => 'John Doe',
-    'email' => 'otieno@gmail.com',
-    'body' => 'This is a feedback'
-  ],
-  [
-    'id' => 2,
-    'name' => 'Jane Doe',
-    'email' => '',
-    'body' => 'This is a feedback'
-  ],
-  [
-    'id' => 2,
-    'name' => 'Jane Doe',
-    'email' => '',
-    'body' => 'This is a feedback'
-  ],
-]
+$sql = "SELECT * FROM FeedBack";
+$result = mysqli_query($conn, $sql);
+$feedbacks = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 ?>
 <a class="navbar-brand" href="#">Traversy Media</a>
@@ -55,7 +38,7 @@ $feedbacks = [
         <div class="card-body text-center">
           <?php echo $feedback['body']; ?>
           <div class="text-secondary mt-2">
-            By <?php echo $feedback['name']; ?>
+            By <?php echo $feedback['name']; ?> on <?php echo $feedback['date']; ?>
           </div>
         </div>
       </div>
